@@ -1,0 +1,15 @@
+[package]
+name = "chinaroutes"
+version = "0.1.0"
+authors = ["PerfectLaugh <denniswu81229@gmail.com>"]
+description = "Add china routes for personal routing"
+license = "MIT"
+build = "build.rs"
+
+[dependencies]
+regex = "0.2"
+clap = "2.24.2"
+
+[build-dependencies]
+gcc = "0.3"
+pkg-config = "0.3.9"
