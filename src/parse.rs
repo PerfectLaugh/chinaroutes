@@ -31,7 +31,7 @@ pub fn parse_ip(file: &str, target_country: &str) -> Vec<([u8; 4], u32)> {
         Ok(_) => (),
     }
 
-    let re = Regex::new(r"apnic\|(\w+)\|ipv4\|[0-9\.]+\|[0-9]+\|[0-9]+\|a.*").unwrap();
+    let re = Regex::new(r"(?m)^.+\|(\w+)\|ipv4\|[0-9\.]+\|[0-9]+\|[0-9]+\|a.*").unwrap();
 
     let mut results: Vec<([u8; 4], u32)> = vec![];
     for mat in re.find_iter(&s) {

@@ -1,8 +1,8 @@
 [package]
 name = "chinaroutes"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["PerfectLaugh <denniswu81229@gmail.com>"]
-description = "Add china routes for personal routing"
+description = "Add country routes for linux routing table"
 license = "MIT"
 build = "build.rs"
 
