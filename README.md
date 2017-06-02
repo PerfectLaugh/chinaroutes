@@ -11,7 +11,7 @@ Because it add routes through libnl, you must have libnl in your system.
 You can almost instantaneously add a bunch of country ips' route by this program.
 
 ```
-chinaroutes 0.1.0
+chinaroutes 0.1.1
 PerfectLaugh
 Add china routes for personal routing
 

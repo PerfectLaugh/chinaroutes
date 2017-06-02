@@ -1,30 +1,34 @@
 extern crate clap;
+extern crate libc;
+
 use clap::{Arg, App};
 
 use std::str::FromStr;
 use std::net::Ipv4Addr;
 
+use libc::{int32_t, uint8_t, uint32_t, c_void};
+
 mod parse;
+
+type Ipv4 = [uint8_t; 4];
 
 #[repr(C)]
 struct route_entry {
-    dst: [u8; 4],
-    mask: u32,
+    dst: Ipv4,
+    mask: uint32_t,
 }
-
-enum Void {}
 
 #[link(name="routes", kind="static")]
 extern {
-    fn netlink_route_connect(skptr: *mut *const Void) -> i32;
-    fn netlink_route_disconnect(sk: *const Void);
-    fn netlink_route_add(sk: *const Void, table: u32, via: *const [u8; 4], rtentry: *const route_entry) -> i32;
-    fn netlink_route_del(sk: *const Void, table: u32, via: *const [u8; 4], rtentry: *const route_entry) -> i32;
+    fn netlink_route_connect(skptr: *mut *const c_void) -> int32_t;
+    fn netlink_route_disconnect(sk: *const c_void);
+    fn netlink_route_add(sk: *const c_void, table: uint32_t, via: *const Ipv4, rtentry: *const route_entry) -> int32_t;
+    fn netlink_route_del(sk: *const c_void, table: uint32_t, via: *const Ipv4, rtentry: *const route_entry) -> int32_t;
 }
 
 fn main() {
     let matches = App::new("chinaroutes")
-                    .version("0.1.0")
+                    .version("0.1.1")
                     .author("PerfectLaugh")
                     .about("Add china routes for personal routing")
                     .arg(Arg::with_name("file")
@@ -76,10 +80,10 @@ fn main() {
     
     let ips = parse::parse_ip(file, target_country);
 
-    let mut sk: *const Void = std::ptr::null();
+    let mut sk: *const c_void = std::ptr::null();
     let ret;
     unsafe {
-        ret = netlink_route_connect(&mut sk as *mut *const Void);
+        ret = netlink_route_connect(&mut sk as *mut *const c_void);
     }
     if ret != 0 {
         println!("Cannot connect netlink: {}", ret);
