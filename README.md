@@ -31,11 +31,11 @@ OPTIONS:
 ```
 ## How to build it?
 
-Basically you just need two things: Rust programming language and libnl, installed on your system.
+Basically you just need two things: **Rust programming language** and **libnl**, installed on your system.
 
 I use Ubuntu as the build platform.
 
-```
+```sh
 $ apt install libnl-3-dev
 $ cd ./chinaroutes
 $ cargo build --release
