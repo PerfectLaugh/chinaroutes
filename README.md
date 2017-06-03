@@ -29,3 +29,18 @@ OPTIONS:
     -t, --table <TABLE>        Routing table (default: 254)
         --target <GATEWAY>     Target gateway
 ```
+## How to build it?
+
+Basically you just need two things: Rust programming language and libnl, installed on your system.
+
+I use Ubuntu as the build platform.
+
+```
+$ apt install libnl-3-dev
+$ cd ./chinaroutes
+$ cargo build --release
+```
+
+then execute the program in ./target/release/chinaroutes
+
+done.
