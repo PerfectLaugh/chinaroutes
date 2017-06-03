@@ -1,5 +1,7 @@
 # Chinaroutes (for Linux-only)
 
+简体中文(Chinese-Simplified): [README.zh-CN.md](README.zh-CN.md)
+
 Original repo: https://github.com/fivesheep/chnroutes
 
 This is only the modification from above project.
